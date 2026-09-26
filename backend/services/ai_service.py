@@ -7,10 +7,18 @@ from dotenv import load_dotenv
 from pydantic import BaseModel, Field
 
 # Load .env securely
-_env_path = Path(__file__).resolve().parent.parent / ".env"
-if _env_path.exists():
-    load_dotenv(dotenv_path=_env_path)
-load_dotenv()  # Fallback to root or environment
+_backend_dir = Path(__file__).resolve().parent.parent
+_backend_env = _backend_dir / ".env"
+_root_env = _backend_dir.parent / ".env"
+
+def reload_env():
+    if _backend_env.exists():
+        load_dotenv(dotenv_path=_backend_env, override=True)
+    if _root_env.exists():
+        load_dotenv(dotenv_path=_root_env, override=False)
+    load_dotenv(override=False)
+
+reload_env()
 
 class AIAnalysisResult(BaseModel):
     risk_level: str = Field(description="Must be LOW, MEDIUM, or HIGH")
@@ -20,6 +28,7 @@ class AIAnalysisResult(BaseModel):
     recommendation: str = Field(description="Short, actionable guidance for the human approver")
 
 def get_api_key() -> str:
+    reload_env()
     key = os.environ.get("GEMINI_API_KEY", "").strip()
     if not key or key in ("YOUR_KEY_HERE", "YOUR_GEMINI_API_KEY", "your_key_here"):
         raise ValueError("Gemini API key is not configured.")

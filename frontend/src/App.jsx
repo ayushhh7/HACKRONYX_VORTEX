@@ -208,6 +208,11 @@ export default function App() {
               <span className="font-bold text-base tracking-tight text-white flex items-center gap-2">
                 Enterprise Expense & Budget System
                 <span className="text-[10px] uppercase font-semibold bg-indigo-950 text-indigo-300 border border-indigo-700/60 px-2 py-0.5 rounded">3NF Engine</span>
+                {api.isDemoMode() && (
+                  <span className="text-[10px] uppercase font-semibold bg-emerald-950 text-emerald-300 border border-emerald-700/60 px-2 py-0.5 rounded flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Live Demo
+                  </span>
+                )}
               </span>
               <p className="text-xs text-slate-400">Two-Phase Commitment & SLA Protocol</p>
             </div>
