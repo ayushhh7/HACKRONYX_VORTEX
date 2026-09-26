@@ -2,6 +2,8 @@
 
 A 3NF-normalized relational database architecture designed to eliminate manual spreadsheet and email processing, enforce department budget limits, identify high-value outflows, and eliminate pending approval bottlenecks.
 
+🌐 **Interactive Live Preview:** [https://ayushhh7.github.io/HACKRONYX_VORTEX/](https://ayushhh7.github.io/HACKRONYX_VORTEX/)
+
 ---
 
 ## 📁 Submission Directory Structure
